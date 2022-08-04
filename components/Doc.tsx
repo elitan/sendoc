@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 
 export function Doc() {
   const router = useRouter()
-  const { id } = router.query
+  const id = router.query.id as string
 
   const { data, isLoading } = useGetDocQuery({
     id
@@ -93,7 +93,7 @@ export function Doc() {
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {doc.docLinks.map((docLink) => {
-                      const docLinkFormatted = `${import.meta.env.VITE_DOMAIN}/d/${docLink.id}`
+                      const docLinkFormatted = `${process.env.NEXT_PUBLIC_DOMAIN}/d/${docLink.id}`
 
                       return (
                         <tr key={docLink.id ?? 0}>
