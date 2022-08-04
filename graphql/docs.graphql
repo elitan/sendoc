@@ -1,0 +1,43 @@
+query GetDocs {
+  docs {
+    id
+    createdAt
+    name
+    docLinks {
+      id
+      createdAt
+      docVisits_aggregate {
+        aggregate {
+          count
+        }
+      }
+    }
+    user {
+      id
+      avatarUrl
+      displayName
+      avatarUrl
+    }
+  }
+}
+
+query GetDoc($id: uuid!) {
+  doc(id: $id) {
+    id
+    name
+    docLinks(order_by: { createdAt: desc }) {
+      id
+      name
+      createdAt
+      requireEmailToView
+      downloadAllowed
+      passcode
+    }
+  }
+}
+
+mutation InsertDoc($doc: docs_insert_input!) {
+  insertDoc(object: $doc) {
+    id
+  }
+}

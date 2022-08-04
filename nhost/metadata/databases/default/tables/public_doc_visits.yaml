@@ -1,0 +1,61 @@
+table:
+  name: doc_visits
+  schema: public
+configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    doc_link_id:
+      custom_name: docLinkId
+    updated_at:
+      custom_name: updatedAt
+  custom_column_names:
+    created_at: createdAt
+    doc_link_id: docLinkId
+    updated_at: updatedAt
+  custom_name: docVisits
+  custom_root_fields:
+    delete: deleteDocVisits
+    delete_by_pk: deleteDocVisit
+    insert: insertDocVisits
+    insert_one: insertDocVisit
+    select_aggregate: docVisitAggregate
+    select_by_pk: docVisit
+    update: updateDocVisits
+    update_by_pk: updateDocVisit
+object_relationships:
+- name: docLink
+  using:
+    foreign_key_constraint_on: doc_link_id
+insert_permissions:
+- permission:
+    check: {}
+    columns:
+    - city
+    - country
+    - doc_link_id
+    - email
+  role: public
+- permission:
+    check: {}
+    columns:
+    - doc_link_id
+    - email
+  role: user
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - city
+    - country
+    - created_at
+    - doc_link_id
+    - email
+    - id
+    - updated_at
+    filter:
+      docLink:
+        doc:
+          user_id:
+            _eq: X-Hasura-User-Id
+  role: user
