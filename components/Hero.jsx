@@ -1,5 +1,3 @@
-import Image from 'next/future/image'
-
 import { Button } from './Button'
 import { Container } from './Container'
 
