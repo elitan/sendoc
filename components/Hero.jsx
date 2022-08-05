@@ -21,7 +21,7 @@ export function Hero() {
         </span>{' '}
       </h1>
       <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
-        Securely share your documents with real-time control and insights—no matter where you're
+        Securely share your documents with real-time control and insights—no matter where you are
         working.
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
