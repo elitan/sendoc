@@ -5,8 +5,6 @@ const params = {
   region: process.env.NEXT_PUBLIC_NHOST_REGION
 }
 
-console.log({ params })
-
 const nhost = new NhostClient(params)
 
 export { nhost }

@@ -1,4 +1,4 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import { useMutation, useQuery, UseMutationOptions, UseQueryOptions } from '@tanstack/react-query';
 import { fetchData } from '../gql-fetcher';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -5244,6 +5244,20 @@ export type Uuid_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
+export type InsertProfileMutationVariables = Exact<{
+  profile: Profiles_Insert_Input;
+}>;
+
+
+export type InsertProfileMutation = { __typename?: 'mutation_root', insertProfile?: { __typename?: 'profiles', id: any } | null };
+
+export type GetUserQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetUserQuery = { __typename?: 'query_root', user?: { __typename?: 'users', id: any, displayName: string, email?: any | null, profile?: { __typename?: 'profiles', id: any, stripeCustomerId: string } | null } | null };
+
 export type GetDocLinkQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -5292,6 +5306,47 @@ export type InsertDocMutationVariables = Exact<{
 export type InsertDocMutation = { __typename?: 'mutation_root', insertDoc?: { __typename?: 'docs', id: any } | null };
 
 
+export const InsertProfileDocument = `
+    mutation InsertProfile($profile: profiles_insert_input!) {
+  insertProfile(object: $profile) {
+    id
+  }
+}
+    `;
+export const useInsertProfileMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<InsertProfileMutation, TError, InsertProfileMutationVariables, TContext>) =>
+    useMutation<InsertProfileMutation, TError, InsertProfileMutationVariables, TContext>(
+      ['InsertProfile'],
+      (variables?: InsertProfileMutationVariables) => fetchData<InsertProfileMutation, InsertProfileMutationVariables>(InsertProfileDocument, variables)(),
+      options
+    );
+export const GetUserDocument = `
+    query getUser($id: uuid!) {
+  user(id: $id) {
+    id
+    displayName
+    email
+    profile {
+      id
+      stripeCustomerId
+    }
+  }
+}
+    `;
+export const useGetUserQuery = <
+      TData = GetUserQuery,
+      TError = unknown
+    >(
+      variables: GetUserQueryVariables,
+      options?: UseQueryOptions<GetUserQuery, TError, TData>
+    ) =>
+    useQuery<GetUserQuery, TError, TData>(
+      ['getUser', variables],
+      fetchData<GetUserQuery, GetUserQueryVariables>(GetUserDocument, variables),
+      options
+    );
 export const GetDocLinkDocument = `
     query getDocLink($id: uuid!) {
   docLink(id: $id) {
