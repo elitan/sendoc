@@ -1,15 +1,37 @@
-import Link from 'next/link'
+import Head from 'next/head'
+
+import { Header } from './Header'
+import { Hero } from './Hero'
+// import { Faqs } from '@/components/Faqs'
+// import { Footer } from '@/components/Footer'
+
+// import { CallToAction } from '@/components/CallToAction'
+// import { Pricing } from '@/components/Pricing'
+// import { PrimaryFeatures } from '@/components/PrimaryFeatures'
+// import { SecondaryFeatures } from '@/components/SecondaryFeatures'
+// import { Testimonials } from '@/components/Testimonials'
 
 export function LandingPage() {
   return (
-    <div>
-      <h1 className="text-red-600">Good looking landing page with SSG</h1>
-      <div>
-        <Link href="/sign-in">
-          <a>Sign In</a>
-        </Link>
-      </div>
-    </div>
+    <>
+      <Head>
+        <title>Sendoc</title>
+        <meta
+          name="description"
+          content="Sendoc is a platform for sending documents to anyone, anywhere in the world."
+        />
+      </Head>
+      <Header />
+      <main>
+        <Hero />
+        {/* <PrimaryFeatures />
+        <SecondaryFeatures />
+        <CallToAction />
+        <Testimonials />
+        <Pricing /> */}
+        {/* <Faqs /> */}
+      </main>
+      {/* <Footer /> */}
+    </>
   )
-  return
 }
