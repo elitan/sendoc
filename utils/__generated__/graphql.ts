@@ -5432,7 +5432,7 @@ export const useInsertDocVisitsMutation = <
     );
 export const GetDocsDocument = `
     query GetDocs {
-  docs {
+  docs(order_by: {createdAt: desc}) {
     id
     createdAt
     name

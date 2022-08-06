@@ -45,7 +45,7 @@ export default function SignIn() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -61,7 +61,7 @@ export default function SignIn() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -71,7 +71,7 @@ export default function SignIn() {
 
             <div className="text-sm">
               {/* TODO */}
-              <span className="font-medium text-indigo-600 hover:text-indigo-500">
+              <span className="font-medium text-orange-600 hover:text-orange-500">
                 Forgot your password?
               </span>
             </div>
@@ -79,12 +79,12 @@ export default function SignIn() {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                 disabled={isLoading}
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon
-                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                    className="h-5 w-5 text-orange-500 group-hover:text-orange-400"
                     aria-hidden="true"
                   />
                 </span>
@@ -95,8 +95,8 @@ export default function SignIn() {
             {isError && <div>{error?.message}</div>}
             <div className="text-gray-600">
               Dont have an account?{' '}
-              <Link href="/sign-up" className="text-indigo-500">
-                <a>Sign up</a>
+              <Link href="/sign-up">
+                <a className="text-orange-500">Sign up</a>
               </Link>
             </div>
           </form>
