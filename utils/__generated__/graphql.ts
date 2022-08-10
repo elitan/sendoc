@@ -1765,6 +1765,169 @@ export type Citext_Comparison_Exp = {
   _similar?: InputMaybe<Scalars['citext']>;
 };
 
+/** columns and relationships of "customers" */
+export type Customers = {
+  __typename?: 'customers';
+  id: Scalars['bigint'];
+};
+
+/** aggregated selection of "customers" */
+export type Customers_Aggregate = {
+  __typename?: 'customers_aggregate';
+  aggregate?: Maybe<Customers_Aggregate_Fields>;
+  nodes: Array<Customers>;
+};
+
+/** aggregate fields of "customers" */
+export type Customers_Aggregate_Fields = {
+  __typename?: 'customers_aggregate_fields';
+  avg?: Maybe<Customers_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Customers_Max_Fields>;
+  min?: Maybe<Customers_Min_Fields>;
+  stddev?: Maybe<Customers_Stddev_Fields>;
+  stddev_pop?: Maybe<Customers_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Customers_Stddev_Samp_Fields>;
+  sum?: Maybe<Customers_Sum_Fields>;
+  var_pop?: Maybe<Customers_Var_Pop_Fields>;
+  var_samp?: Maybe<Customers_Var_Samp_Fields>;
+  variance?: Maybe<Customers_Variance_Fields>;
+};
+
+
+/** aggregate fields of "customers" */
+export type Customers_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Customers_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Customers_Avg_Fields = {
+  __typename?: 'customers_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "customers". All fields are combined with a logical 'AND'. */
+export type Customers_Bool_Exp = {
+  _and?: InputMaybe<Array<Customers_Bool_Exp>>;
+  _not?: InputMaybe<Customers_Bool_Exp>;
+  _or?: InputMaybe<Array<Customers_Bool_Exp>>;
+  id?: InputMaybe<Bigint_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "customers" */
+export enum Customers_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  CustomersPkey = 'customers_pkey'
+}
+
+/** input type for incrementing numeric columns in table "customers" */
+export type Customers_Inc_Input = {
+  id?: InputMaybe<Scalars['bigint']>;
+};
+
+/** input type for inserting data into table "customers" */
+export type Customers_Insert_Input = {
+  id?: InputMaybe<Scalars['bigint']>;
+};
+
+/** aggregate max on columns */
+export type Customers_Max_Fields = {
+  __typename?: 'customers_max_fields';
+  id?: Maybe<Scalars['bigint']>;
+};
+
+/** aggregate min on columns */
+export type Customers_Min_Fields = {
+  __typename?: 'customers_min_fields';
+  id?: Maybe<Scalars['bigint']>;
+};
+
+/** response of any mutation on the table "customers" */
+export type Customers_Mutation_Response = {
+  __typename?: 'customers_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Customers>;
+};
+
+/** on_conflict condition type for table "customers" */
+export type Customers_On_Conflict = {
+  constraint: Customers_Constraint;
+  update_columns?: Array<Customers_Update_Column>;
+  where?: InputMaybe<Customers_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "customers". */
+export type Customers_Order_By = {
+  id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: customers */
+export type Customers_Pk_Columns_Input = {
+  id: Scalars['bigint'];
+};
+
+/** select columns of table "customers" */
+export enum Customers_Select_Column {
+  /** column name */
+  Id = 'id'
+}
+
+/** input type for updating data in table "customers" */
+export type Customers_Set_Input = {
+  id?: InputMaybe<Scalars['bigint']>;
+};
+
+/** aggregate stddev on columns */
+export type Customers_Stddev_Fields = {
+  __typename?: 'customers_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Customers_Stddev_Pop_Fields = {
+  __typename?: 'customers_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Customers_Stddev_Samp_Fields = {
+  __typename?: 'customers_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Customers_Sum_Fields = {
+  __typename?: 'customers_sum_fields';
+  id?: Maybe<Scalars['bigint']>;
+};
+
+/** update columns of table "customers" */
+export enum Customers_Update_Column {
+  /** column name */
+  Id = 'id'
+}
+
+/** aggregate var_pop on columns */
+export type Customers_Var_Pop_Fields = {
+  __typename?: 'customers_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Customers_Var_Samp_Fields = {
+  __typename?: 'customers_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Customers_Variance_Fields = {
+  __typename?: 'customers_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
 /** columns and relationships of "doc_visits" */
 export type DocVisits = {
   __typename?: 'docVisits';
@@ -2936,6 +3099,10 @@ export type Mutation_Root = {
   deleteUser?: Maybe<Users>;
   /** delete data from the table: "auth.users" */
   deleteUsers?: Maybe<Users_Mutation_Response>;
+  /** delete data from the table: "customers" */
+  delete_customers?: Maybe<Customers_Mutation_Response>;
+  /** delete single row from the table: "customers" */
+  delete_customers_by_pk?: Maybe<Customers>;
   /** delete data from the table: "doc_links" */
   delete_doc_links?: Maybe<Doc_Links_Mutation_Response>;
   /** delete single row from the table: "doc_links" */
@@ -2996,6 +3163,10 @@ export type Mutation_Root = {
   insertUser?: Maybe<Users>;
   /** insert data into the table: "auth.users" */
   insertUsers?: Maybe<Users_Mutation_Response>;
+  /** insert data into the table: "customers" */
+  insert_customers?: Maybe<Customers_Mutation_Response>;
+  /** insert a single row into the table: "customers" */
+  insert_customers_one?: Maybe<Customers>;
   /** update single row of the table: "auth.providers" */
   updateAuthProvider?: Maybe<AuthProviders>;
   /** update single row of the table: "auth.provider_requests" */
@@ -3048,6 +3219,10 @@ export type Mutation_Root = {
   updateUser?: Maybe<Users>;
   /** update data of the table: "auth.users" */
   updateUsers?: Maybe<Users_Mutation_Response>;
+  /** update data of the table: "customers" */
+  update_customers?: Maybe<Customers_Mutation_Response>;
+  /** update single row of the table: "customers" */
+  update_customers_by_pk?: Maybe<Customers>;
   /** update data of the table: "doc_links" */
   update_doc_links?: Maybe<Doc_Links_Mutation_Response>;
   /** update single row of the table: "doc_links" */
@@ -3208,6 +3383,18 @@ export type Mutation_RootDeleteUserArgs = {
 /** mutation root */
 export type Mutation_RootDeleteUsersArgs = {
   where: Users_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_CustomersArgs = {
+  where: Customers_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Customers_By_PkArgs = {
+  id: Scalars['bigint'];
 };
 
 
@@ -3420,6 +3607,20 @@ export type Mutation_RootInsertUsersArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_CustomersArgs = {
+  objects: Array<Customers_Insert_Input>;
+  on_conflict?: InputMaybe<Customers_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Customers_OneArgs = {
+  object: Customers_Insert_Input;
+  on_conflict?: InputMaybe<Customers_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdateAuthProviderArgs = {
   _set?: InputMaybe<AuthProviders_Set_Input>;
   pk_columns: AuthProviders_Pk_Columns_Input;
@@ -3624,6 +3825,22 @@ export type Mutation_RootUpdateUsersArgs = {
   _prepend?: InputMaybe<Users_Prepend_Input>;
   _set?: InputMaybe<Users_Set_Input>;
   where: Users_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_CustomersArgs = {
+  _inc?: InputMaybe<Customers_Inc_Input>;
+  _set?: InputMaybe<Customers_Set_Input>;
+  where: Customers_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Customers_By_PkArgs = {
+  _inc?: InputMaybe<Customers_Inc_Input>;
+  _set?: InputMaybe<Customers_Set_Input>;
+  pk_columns: Customers_Pk_Columns_Input;
 };
 
 
@@ -3833,6 +4050,12 @@ export type Query_Root = {
   buckets: Array<Buckets>;
   /** fetch aggregated fields from the table: "storage.buckets" */
   bucketsAggregate: Buckets_Aggregate;
+  /** fetch data from the table: "customers" */
+  customers: Array<Customers>;
+  /** fetch aggregated fields from the table: "customers" */
+  customers_aggregate: Customers_Aggregate;
+  /** fetch data from the table: "customers" using primary key columns */
+  customers_by_pk?: Maybe<Customers>;
   /** fetch data from the table: "docs" using primary key columns */
   doc?: Maybe<Docs>;
   /** fetch data from the table: "doc_links" using primary key columns */
@@ -4056,6 +4279,29 @@ export type Query_RootBucketsAggregateArgs = {
 };
 
 
+export type Query_RootCustomersArgs = {
+  distinct_on?: InputMaybe<Array<Customers_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Customers_Order_By>>;
+  where?: InputMaybe<Customers_Bool_Exp>;
+};
+
+
+export type Query_RootCustomers_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Customers_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Customers_Order_By>>;
+  where?: InputMaybe<Customers_Bool_Exp>;
+};
+
+
+export type Query_RootCustomers_By_PkArgs = {
+  id: Scalars['bigint'];
+};
+
+
 export type Query_RootDocArgs = {
   id: Scalars['uuid'];
 };
@@ -4243,6 +4489,12 @@ export type Subscription_Root = {
   buckets: Array<Buckets>;
   /** fetch aggregated fields from the table: "storage.buckets" */
   bucketsAggregate: Buckets_Aggregate;
+  /** fetch data from the table: "customers" */
+  customers: Array<Customers>;
+  /** fetch aggregated fields from the table: "customers" */
+  customers_aggregate: Customers_Aggregate;
+  /** fetch data from the table: "customers" using primary key columns */
+  customers_by_pk?: Maybe<Customers>;
   /** fetch data from the table: "docs" using primary key columns */
   doc?: Maybe<Docs>;
   /** fetch data from the table: "doc_links" using primary key columns */
@@ -4463,6 +4715,29 @@ export type Subscription_RootBucketsAggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Buckets_Order_By>>;
   where?: InputMaybe<Buckets_Bool_Exp>;
+};
+
+
+export type Subscription_RootCustomersArgs = {
+  distinct_on?: InputMaybe<Array<Customers_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Customers_Order_By>>;
+  where?: InputMaybe<Customers_Bool_Exp>;
+};
+
+
+export type Subscription_RootCustomers_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Customers_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Customers_Order_By>>;
+  where?: InputMaybe<Customers_Bool_Exp>;
+};
+
+
+export type Subscription_RootCustomers_By_PkArgs = {
+  id: Scalars['bigint'];
 };
 
 

@@ -1,82 +1,82 @@
 table:
-  name: doc_links
   schema: public
+  name: doc_links
 configuration:
+  custom_root_fields:
+    insert: insertDocLinks
+    insert_one: insertDocLink
+    select_by_pk: docLink
+    select: docLinks
   column_config:
-    created_at:
-      custom_name: createdAt
     doc_id:
       custom_name: docId
     download_allowed:
       custom_name: downloadAllowed
-    is_active:
-      custom_name: isActive
-    require_email_to_view:
-      custom_name: requireEmailToView
     updated_at:
       custom_name: updatedAt
+    created_at:
+      custom_name: createdAt
+    require_email_to_view:
+      custom_name: requireEmailToView
+    is_active:
+      custom_name: isActive
   custom_column_names:
-    created_at: createdAt
     doc_id: docId
     download_allowed: downloadAllowed
-    is_active: isActive
-    require_email_to_view: requireEmailToView
     updated_at: updatedAt
-  custom_root_fields:
-    insert: insertDocLinks
-    insert_one: insertDocLink
-    select: docLinks
-    select_by_pk: docLink
+    created_at: createdAt
+    require_email_to_view: requireEmailToView
+    is_active: isActive
 object_relationships:
-- name: doc
-  using:
-    foreign_key_constraint_on: doc_id
+  - name: doc
+    using:
+      foreign_key_constraint_on: doc_id
 array_relationships:
-- name: docVisits
-  using:
-    foreign_key_constraint_on:
-      column: doc_link_id
-      table:
-        name: doc_visits
-        schema: public
+  - name: docVisits
+    using:
+      foreign_key_constraint_on:
+        column: doc_link_id
+        table:
+          schema: public
+          name: doc_visits
 insert_permissions:
-- permission:
-    check:
-      doc:
-        user_id:
-          _eq: X-Hasura-User-Id
-    columns:
-    - doc_id
-    - download_allowed
-    - is_active
-    - name
-    - passcode
-    - require_email_to_view
-  role: user
+  - role: user
+    permission:
+      check:
+        doc:
+          user_id:
+            _eq: X-Hasura-User-Id
+      columns:
+        - doc_id
+        - download_allowed
+        - is_active
+        - name
+        - passcode
+        - require_email_to_view
 select_permissions:
-- permission:
-    columns:
-    - download_allowed
-    - id
-    - is_active
-    - passcode
-    - require_email_to_view
-    filter: {}
-    limit: 0
-  role: public
-- permission:
-    columns:
-    - created_at
-    - doc_id
-    - download_allowed
-    - id
-    - is_active
-    - name
-    - passcode
-    - require_email_to_view
-    - updated_at
-    filter:
-      doc:
-        user_id:
-          _eq: X-Hasura-User-Id
-  role: user
+  - role: public
+    permission:
+      columns:
+        - download_allowed
+        - id
+        - is_active
+        - passcode
+        - require_email_to_view
+      filter: {}
+      limit: 0
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - doc_id
+        - download_allowed
+        - id
+        - is_active
+        - name
+        - passcode
+        - require_email_to_view
+        - updated_at
+      filter:
+        doc:
+          user_id:
+            _eq: X-Hasura-User-Id

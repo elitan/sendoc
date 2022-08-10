@@ -1,61 +1,61 @@
 table:
-  name: doc_visits
   schema: public
+  name: doc_visits
 configuration:
+  custom_root_fields:
+    insert: insertDocVisits
+    select_aggregate: docVisitAggregate
+    insert_one: insertDocVisit
+    select_by_pk: docVisit
+    delete: deleteDocVisits
+    update: updateDocVisits
+    delete_by_pk: deleteDocVisit
+    update_by_pk: updateDocVisit
+  custom_name: docVisits
   column_config:
-    created_at:
-      custom_name: createdAt
     doc_link_id:
       custom_name: docLinkId
     updated_at:
       custom_name: updatedAt
+    created_at:
+      custom_name: createdAt
   custom_column_names:
-    created_at: createdAt
     doc_link_id: docLinkId
     updated_at: updatedAt
-  custom_name: docVisits
-  custom_root_fields:
-    delete: deleteDocVisits
-    delete_by_pk: deleteDocVisit
-    insert: insertDocVisits
-    insert_one: insertDocVisit
-    select_aggregate: docVisitAggregate
-    select_by_pk: docVisit
-    update: updateDocVisits
-    update_by_pk: updateDocVisit
+    created_at: createdAt
 object_relationships:
-- name: docLink
-  using:
-    foreign_key_constraint_on: doc_link_id
+  - name: docLink
+    using:
+      foreign_key_constraint_on: doc_link_id
 insert_permissions:
-- permission:
-    check: {}
-    columns:
-    - city
-    - country
-    - doc_link_id
-    - email
-  role: public
-- permission:
-    check: {}
-    columns:
-    - doc_link_id
-    - email
-  role: user
+  - role: public
+    permission:
+      check: {}
+      columns:
+        - city
+        - country
+        - doc_link_id
+        - email
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - doc_link_id
+        - email
 select_permissions:
-- permission:
-    allow_aggregations: true
-    columns:
-    - city
-    - country
-    - created_at
-    - doc_link_id
-    - email
-    - id
-    - updated_at
-    filter:
-      docLink:
-        doc:
-          user_id:
-            _eq: X-Hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      columns:
+        - city
+        - country
+        - created_at
+        - doc_link_id
+        - email
+        - id
+        - updated_at
+      filter:
+        docLink:
+          doc:
+            user_id:
+              _eq: X-Hasura-User-Id
+      allow_aggregations: true
