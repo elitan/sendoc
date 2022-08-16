@@ -1,32 +1,32 @@
 table:
-  schema: public
   name: doc_links
+  schema: public
 configuration:
-  custom_root_fields:
-    insert: insertDocLinks
-    insert_one: insertDocLink
-    select_by_pk: docLink
-    select: docLinks
   column_config:
+    created_at:
+      custom_name: createdAt
     doc_id:
       custom_name: docId
     download_allowed:
       custom_name: downloadAllowed
-    updated_at:
-      custom_name: updatedAt
-    created_at:
-      custom_name: createdAt
-    require_email_to_view:
-      custom_name: requireEmailToView
     is_active:
       custom_name: isActive
+    require_email_to_view:
+      custom_name: requireEmailToView
+    updated_at:
+      custom_name: updatedAt
   custom_column_names:
+    created_at: createdAt
     doc_id: docId
     download_allowed: downloadAllowed
-    updated_at: updatedAt
-    created_at: createdAt
-    require_email_to_view: requireEmailToView
     is_active: isActive
+    require_email_to_view: requireEmailToView
+    updated_at: updatedAt
+  custom_root_fields:
+    insert: insertDocLinks
+    insert_one: insertDocLink
+    select: docLinks
+    select_by_pk: docLink
 object_relationships:
   - name: doc
     using:
@@ -37,8 +37,8 @@ array_relationships:
       foreign_key_constraint_on:
         column: doc_link_id
         table:
-          schema: public
           name: doc_visits
+          schema: public
 insert_permissions:
   - role: user
     permission:

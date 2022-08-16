@@ -1,32 +1,32 @@
 table:
-  schema: auth
   name: refresh_tokens
+  schema: auth
 configuration:
-  custom_root_fields:
-    insert: insertAuthRefreshTokens
-    select_aggregate: authRefreshTokensAggregate
-    insert_one: insertAuthRefreshToken
-    select_by_pk: authRefreshToken
-    select: authRefreshTokens
-    delete: deleteAuthRefreshTokens
-    update: updateAuthRefreshTokens
-    delete_by_pk: deleteAuthRefreshToken
-    update_by_pk: updateAuthRefreshToken
-  custom_name: authRefreshTokens
   column_config:
-    refresh_token:
-      custom_name: refreshToken
-    expires_at:
-      custom_name: expiresAt
     created_at:
       custom_name: createdAt
+    expires_at:
+      custom_name: expiresAt
+    refresh_token:
+      custom_name: refreshToken
     user_id:
       custom_name: userId
   custom_column_names:
-    refresh_token: refreshToken
-    expires_at: expiresAt
     created_at: createdAt
+    expires_at: expiresAt
+    refresh_token: refreshToken
     user_id: userId
+  custom_name: authRefreshTokens
+  custom_root_fields:
+    delete: deleteAuthRefreshTokens
+    delete_by_pk: deleteAuthRefreshToken
+    insert: insertAuthRefreshTokens
+    insert_one: insertAuthRefreshToken
+    select: authRefreshTokens
+    select_aggregate: authRefreshTokensAggregate
+    select_by_pk: authRefreshToken
+    update: updateAuthRefreshTokens
+    update_by_pk: updateAuthRefreshToken
 object_relationships:
   - name: user
     using:

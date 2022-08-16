@@ -1,41 +1,41 @@
 table:
-  schema: auth
   name: user_providers
+  schema: auth
 configuration:
-  custom_root_fields:
-    insert: insertAuthUserProviders
-    select_aggregate: authUserProvidersAggregate
-    insert_one: insertAuthUserProvider
-    select_by_pk: authUserProvider
-    select: authUserProviders
-    delete: deleteAuthUserProviders
-    update: updateAuthUserProviders
-    delete_by_pk: deleteAuthUserProvider
-    update_by_pk: updateAuthUserProvider
-  custom_name: authUserProviders
   column_config:
-    provider_user_id:
-      custom_name: providerUserId
     access_token:
       custom_name: accessToken
+    created_at:
+      custom_name: createdAt
     provider_id:
       custom_name: providerId
+    provider_user_id:
+      custom_name: providerUserId
     refresh_token:
       custom_name: refreshToken
     updated_at:
       custom_name: updatedAt
-    created_at:
-      custom_name: createdAt
     user_id:
       custom_name: userId
   custom_column_names:
-    provider_user_id: providerUserId
     access_token: accessToken
+    created_at: createdAt
     provider_id: providerId
+    provider_user_id: providerUserId
     refresh_token: refreshToken
     updated_at: updatedAt
-    created_at: createdAt
     user_id: userId
+  custom_name: authUserProviders
+  custom_root_fields:
+    delete: deleteAuthUserProviders
+    delete_by_pk: deleteAuthUserProvider
+    insert: insertAuthUserProviders
+    insert_one: insertAuthUserProvider
+    select: authUserProviders
+    select_aggregate: authUserProvidersAggregate
+    select_by_pk: authUserProvider
+    update: updateAuthUserProviders
+    update_by_pk: updateAuthUserProvider
 object_relationships:
   - name: provider
     using:

@@ -1,18 +1,7 @@
 table:
-  schema: auth
   name: user_roles
+  schema: auth
 configuration:
-  custom_root_fields:
-    insert: insertAuthUserRoles
-    select_aggregate: authUserRolesAggregate
-    insert_one: insertAuthUserRole
-    select_by_pk: authUserRole
-    select: authUserRoles
-    delete: deleteAuthUserRoles
-    update: updateAuthUserRoles
-    delete_by_pk: deleteAuthUserRole
-    update_by_pk: updateAuthUserRole
-  custom_name: authUserRoles
   column_config:
     created_at:
       custom_name: createdAt
@@ -21,6 +10,17 @@ configuration:
   custom_column_names:
     created_at: createdAt
     user_id: userId
+  custom_name: authUserRoles
+  custom_root_fields:
+    delete: deleteAuthUserRoles
+    delete_by_pk: deleteAuthUserRole
+    insert: insertAuthUserRoles
+    insert_one: insertAuthUserRole
+    select: authUserRoles
+    select_aggregate: authUserRolesAggregate
+    select_by_pk: authUserRole
+    update: updateAuthUserRoles
+    update_by_pk: updateAuthUserRole
 object_relationships:
   - name: roleByRole
     using:

@@ -1,28 +1,28 @@
 table:
-  schema: public
   name: doc_visits
+  schema: public
 configuration:
-  custom_root_fields:
-    insert: insertDocVisits
-    select_aggregate: docVisitAggregate
-    insert_one: insertDocVisit
-    select_by_pk: docVisit
-    delete: deleteDocVisits
-    update: updateDocVisits
-    delete_by_pk: deleteDocVisit
-    update_by_pk: updateDocVisit
-  custom_name: docVisits
   column_config:
+    created_at:
+      custom_name: createdAt
     doc_link_id:
       custom_name: docLinkId
     updated_at:
       custom_name: updatedAt
-    created_at:
-      custom_name: createdAt
   custom_column_names:
+    created_at: createdAt
     doc_link_id: docLinkId
     updated_at: updatedAt
-    created_at: createdAt
+  custom_name: docVisits
+  custom_root_fields:
+    delete: deleteDocVisits
+    delete_by_pk: deleteDocVisit
+    insert: insertDocVisits
+    insert_one: insertDocVisit
+    select_aggregate: docVisitAggregate
+    select_by_pk: docVisit
+    update: updateDocVisits
+    update_by_pk: updateDocVisit
 object_relationships:
   - name: docLink
     using:

@@ -1,29 +1,29 @@
 table:
-  schema: auth
   name: user_authenticators
+  schema: auth
 configuration:
-  custom_root_fields:
-    insert: insertAuthUserAuthenticators
-    select_aggregate: authUserAuthenticatorsAggregate
-    insert_one: insertAuthUserAuthenticator
-    select_by_pk: authUserAuthenticator
-    select: authUserAuthenticators
-    delete: deleteAuthUserAuthenticators
-    update: updateAuthUserAuthenticators
-    delete_by_pk: deleteAuthUserAuthenticator
-    update_by_pk: updateAuthUserAuthenticator
-  custom_name: authUserAuthenticators
   column_config:
+    credential_id:
+      custom_name: credentialId
     credential_public_key:
       custom_name: credentialPublicKey
     user_id:
       custom_name: userId
-    credential_id:
-      custom_name: credentialId
   custom_column_names:
+    credential_id: credentialId
     credential_public_key: credentialPublicKey
     user_id: userId
-    credential_id: credentialId
+  custom_name: authUserAuthenticators
+  custom_root_fields:
+    delete: deleteAuthUserAuthenticators
+    delete_by_pk: deleteAuthUserAuthenticator
+    insert: insertAuthUserAuthenticators
+    insert_one: insertAuthUserAuthenticator
+    select: authUserAuthenticators
+    select_aggregate: authUserAuthenticatorsAggregate
+    select_by_pk: authUserAuthenticator
+    update: updateAuthUserAuthenticators
+    update_by_pk: updateAuthUserAuthenticator
 object_relationships:
   - name: user
     using:

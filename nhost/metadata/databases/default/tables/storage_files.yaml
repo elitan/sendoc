@@ -1,44 +1,44 @@
 table:
-  schema: storage
   name: files
+  schema: storage
 configuration:
-  custom_root_fields:
-    insert: insertFiles
-    select_aggregate: filesAggregate
-    insert_one: insertFile
-    select_by_pk: file
-    select: files
-    delete: deleteFiles
-    update: updateFiles
-    delete_by_pk: deleteFile
-    update_by_pk: updateFile
-  custom_name: files
   column_config:
+    bucket_id:
+      custom_name: bucketId
+    created_at:
+      custom_name: createdAt
     etag:
       custom_name: etag
     is_uploaded:
       custom_name: isUploaded
-    uploaded_by_user_id:
-      custom_name: uploadedByUserId
-    size:
-      custom_name: size
     mime_type:
       custom_name: mimeType
-    bucket_id:
-      custom_name: bucketId
+    size:
+      custom_name: size
     updated_at:
       custom_name: updatedAt
-    created_at:
-      custom_name: createdAt
+    uploaded_by_user_id:
+      custom_name: uploadedByUserId
   custom_column_names:
+    bucket_id: bucketId
+    created_at: createdAt
     etag: etag
     is_uploaded: isUploaded
-    uploaded_by_user_id: uploadedByUserId
-    size: size
     mime_type: mimeType
-    bucket_id: bucketId
+    size: size
     updated_at: updatedAt
-    created_at: createdAt
+    uploaded_by_user_id: uploadedByUserId
+  custom_name: files
+  custom_root_fields:
+    delete: deleteFiles
+    delete_by_pk: deleteFile
+    insert: insertFiles
+    insert_one: insertFile
+    select: files
+    select_aggregate: filesAggregate
+    select_by_pk: file
+    update: updateFiles
+    update_by_pk: updateFile
 object_relationships:
   - name: bucket
     using:
@@ -49,8 +49,8 @@ array_relationships:
       foreign_key_constraint_on:
         column: file_id
         table:
-          schema: public
           name: docs
+          schema: public
 insert_permissions:
   - role: user
     permission:

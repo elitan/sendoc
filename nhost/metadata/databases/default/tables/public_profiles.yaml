@@ -1,22 +1,22 @@
 table:
-  schema: public
   name: profiles
+  schema: public
 configuration:
-  custom_root_fields:
-    insert: insertProfiles
-    select_aggregate: profilesAggregate
-    insert_one: insertProfile
-    select_by_pk: profile
-    delete: deleteProfiles
-    update: updateProfiles
-    delete_by_pk: deleteProfile
-    update_by_pk: updateProfile
-  custom_name: profiles
   column_config:
     stripe_customer_id:
       custom_name: stripeCustomerId
   custom_column_names:
     stripe_customer_id: stripeCustomerId
+  custom_name: profiles
+  custom_root_fields:
+    delete: deleteProfiles
+    delete_by_pk: deleteProfile
+    insert: insertProfiles
+    insert_one: insertProfile
+    select_aggregate: profilesAggregate
+    select_by_pk: profile
+    update: updateProfiles
+    update_by_pk: updateProfile
 object_relationships:
   - name: user
     using:
@@ -24,12 +24,12 @@ object_relationships:
 event_triggers:
   - name: profiles-delete-stripe
     definition:
-      enable_manual: false
       delete:
         columns: '*'
+      enable_manual: false
     retry_conf:
-      num_retries: 0
       interval_sec: 10
+      num_retries: 0
       timeout_sec: 15
     webhook: '{{NHOST_BACKEND_URL}}/v1/functions/events/profiles/delete/stripe'
     headers:

@@ -1,31 +1,31 @@
 table:
-  schema: public
   name: docs
+  schema: public
 configuration:
-  custom_root_fields:
-    insert: insertDocs
-    select_aggregate: docsAggregate
-    insert_one: insertDoc
-    select_by_pk: doc
-    select: docs
-    delete: deleteDocs
-    update: updateDocs
-    delete_by_pk: DeleteDoc
-    update_by_pk: updateDoc
   column_config:
+    created_at:
+      custom_name: createdAt
     file_id:
       custom_name: fileId
     updated_at:
       custom_name: updatedAt
-    created_at:
-      custom_name: createdAt
     user_id:
       custom_name: userId
   custom_column_names:
+    created_at: createdAt
     file_id: fileId
     updated_at: updatedAt
-    created_at: createdAt
     user_id: userId
+  custom_root_fields:
+    delete: deleteDocs
+    delete_by_pk: DeleteDoc
+    insert: insertDocs
+    insert_one: insertDoc
+    select: docs
+    select_aggregate: docsAggregate
+    select_by_pk: doc
+    update: updateDocs
+    update_by_pk: updateDoc
 object_relationships:
   - name: file
     using:
@@ -39,8 +39,8 @@ array_relationships:
       foreign_key_constraint_on:
         column: doc_id
         table:
-          schema: public
           name: doc_links
+          schema: public
 insert_permissions:
   - role: user
     permission:
