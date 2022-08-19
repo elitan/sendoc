@@ -1,17 +1,15 @@
 SET check_function_bodies = false;
-
-CREATE OR REPLACE FUNCTION public.set_current_timestamp_updated_at() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-DECLARE
-  _new record;
-BEGIN
-  _new := NEW;
-  _new."updated_at" = NOW();
-  RETURN _new;
-END;
-$$;
-
+CREATE TABLE public.customers (
+    id bigint NOT NULL,
+    name text
+);
+CREATE SEQUENCE public.customers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ALTER SEQUENCE public.customers_id_seq OWNED BY public.customers.id;
 CREATE TABLE public.doc_links (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
@@ -20,14 +18,17 @@ CREATE TABLE public.doc_links (
     is_active boolean DEFAULT true NOT NULL,
     require_email_to_view boolean DEFAULT false NOT NULL,
     passcode text,
-    download_allowed boolean DEFAULT false NOT NULL
+    download_allowed boolean DEFAULT false NOT NULL,
+    name text NOT NULL
 );
 CREATE TABLE public.doc_visits (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     updated_at timestamp with time zone DEFAULT now() NOT NULL,
     doc_link_id uuid NOT NULL,
-    email text
+    email text,
+    city text,
+    country text
 );
 CREATE TABLE public.docs (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
@@ -37,12 +38,23 @@ CREATE TABLE public.docs (
     file_id uuid NOT NULL,
     user_id uuid NOT NULL
 );
+CREATE TABLE public.profiles (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    stripe_customer_id text NOT NULL
+);
+ALTER TABLE ONLY public.customers ALTER COLUMN id SET DEFAULT nextval('public.customers_id_seq'::regclass);
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.doc_links
     ADD CONSTRAINT doc_links_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.doc_visits
     ADD CONSTRAINT doc_visits_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.docs
     ADD CONSTRAINT docs_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.profiles
+    ADD CONSTRAINT profiles_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.profiles
+    ADD CONSTRAINT profiles_stripe_customer_id_key UNIQUE (stripe_customer_id);
 CREATE TRIGGER set_public_doc_links_updated_at BEFORE UPDATE ON public.doc_links FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
 COMMENT ON TRIGGER set_public_doc_links_updated_at ON public.doc_links IS 'trigger to set value of column "updated_at" to current timestamp on row update';
 CREATE TRIGGER set_public_doc_visits_updated_at BEFORE UPDATE ON public.doc_visits FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
@@ -57,3 +69,5 @@ ALTER TABLE ONLY public.docs
     ADD CONSTRAINT docs_file_id_fkey FOREIGN KEY (file_id) REFERENCES storage.files(id) ON UPDATE RESTRICT ON DELETE CASCADE;
 ALTER TABLE ONLY public.docs
     ADD CONSTRAINT docs_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth.users(id) ON UPDATE RESTRICT ON DELETE CASCADE;
+ALTER TABLE ONLY public.profiles
+    ADD CONSTRAINT profiles_id_fkey FOREIGN KEY (id) REFERENCES auth.users(id) ON UPDATE RESTRICT ON DELETE CASCADE;
