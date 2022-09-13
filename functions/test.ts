@@ -1,3 +1,4 @@
+import { Request, Response } from 'express'
 import { createServer } from '@graphql-yoga/node'
 import SchemaBuilder from '@pothos/core'
 
@@ -14,7 +15,10 @@ builder.queryType({
   })
 })
 
-const server = createServer({
+const server = createServer<{
+  req: Request
+  res: Response
+}>({
   schema: builder.toSchema()
 })
 
