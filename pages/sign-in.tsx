@@ -10,8 +10,6 @@ export default function SignIn() {
 
   const { signInEmailPassword, isSuccess, isLoading, isError, error } = useSignInEmailPassword()
 
-  // const location = useLocation()
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 

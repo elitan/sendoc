@@ -52,6 +52,20 @@ array_relationships:
           name: docs
           schema: public
 insert_permissions:
+  - role: public
+    permission:
+      check: {}
+      columns:
+        - is_uploaded
+        - size
+        - bucket_id
+        - etag
+        - mime_type
+        - name
+        - created_at
+        - updated_at
+        - id
+        - uploaded_by_user_id
   - role: user
     permission:
       check: {}
