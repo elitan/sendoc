@@ -6,7 +6,7 @@ type Profile = {
   stripe_customer_id: string
 }
 
-export default async (req: Request, res: Response) => {
+const handler = async (req: Request, res: Response) => {
   const { body } = req
 
   const profile = body.event.data.old as Profile
@@ -20,3 +20,5 @@ export default async (req: Request, res: Response) => {
 
   res.sendStatus(204)
 }
+
+export default handler

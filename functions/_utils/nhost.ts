@@ -1,8 +1,7 @@
 import { NhostClient } from '@nhost/nhost-js'
 
 const nhost = new NhostClient({
-  subdomain: process.env.NHOST_SUBDOMAIN,
-  region: process.env.NHOST_REGION
+  backendUrl: process.env.NHOST_BACKEND_URL
 })
 
 export { nhost }

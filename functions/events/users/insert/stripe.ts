@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { sdk } from '../../../_utils/graphql-sdk'
 import { stripe } from '../../../_utils/stripe'
 
-export default async (req: Request, res: Response) => {
+const handler = async (req: Request, res: Response) => {
   const { body } = req
 
   const user = await sdk
@@ -51,3 +51,5 @@ export default async (req: Request, res: Response) => {
 
   res.sendStatus(204)
 }
+
+export default handler
