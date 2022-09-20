@@ -12,8 +12,7 @@ const server = createServer({
         hello: () => 'world from test2'
       }
     }
-  },
-  logging: false
+  }
 })
 
 export default server
