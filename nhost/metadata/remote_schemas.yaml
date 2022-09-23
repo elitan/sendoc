@@ -1,9 +1,1 @@
-- name: stripe
-  definition:
-    url: '{{NHOST_BACKEND_URL}}/v1/functions/graphql/stripe'
-    timeout_seconds: 60
-    customization: {}
-    headers:
-      - name: x-nhost-webhook-secret
-        value_from_env: NHOST_WEBHOOK_SECRET
-    forward_client_headers: true
+[]

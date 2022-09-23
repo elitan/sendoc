@@ -21,20 +21,6 @@ object_relationships:
   - name: user
     using:
       foreign_key_constraint_on: id
-remote_relationships:
-  - definition:
-      to_remote_schema:
-        lhs_fields:
-          - stripe_customer_id
-        remote_field:
-          stripe:
-            arguments: {}
-            field:
-              customer:
-                arguments:
-                  id: $stripe_customer_id
-        remote_schema: stripe
-    name: stripeCustomer
 event_triggers:
   - name: profiles-delete-stripe
     definition:
