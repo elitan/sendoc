@@ -1,3 +1,4 @@
+SET check_function_bodies = false;
 CREATE OR REPLACE FUNCTION public.set_current_timestamp_updated_at() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
@@ -9,19 +10,6 @@ BEGIN
   RETURN _new;
 END;
 $$;
-
-SET check_function_bodies = false;
-CREATE TABLE public.customers (
-    id bigint NOT NULL,
-    name text
-);
-CREATE SEQUENCE public.customers_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-ALTER SEQUENCE public.customers_id_seq OWNED BY public.customers.id;
 CREATE TABLE public.doc_links (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
@@ -50,19 +38,22 @@ CREATE TABLE public.docs (
     file_id uuid NOT NULL,
     user_id uuid NOT NULL
 );
+CREATE TABLE public.logs (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    log text NOT NULL
+);
 CREATE TABLE public.profiles (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
     stripe_customer_id text NOT NULL
 );
-ALTER TABLE ONLY public.customers ALTER COLUMN id SET DEFAULT nextval('public.customers_id_seq'::regclass);
-ALTER TABLE ONLY public.customers
-    ADD CONSTRAINT customers_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.doc_links
     ADD CONSTRAINT doc_links_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.doc_visits
     ADD CONSTRAINT doc_visits_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.docs
     ADD CONSTRAINT docs_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.logs
+    ADD CONSTRAINT logs_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.profiles
     ADD CONSTRAINT profiles_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.profiles
