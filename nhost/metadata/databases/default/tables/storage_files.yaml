@@ -81,21 +81,6 @@ insert_permissions:
         - id
         - uploaded_by_user_id
 select_permissions:
-  - role: public
-    permission:
-      columns:
-        - bucket_id
-        - created_at
-        - etag
-        - id
-        - is_uploaded
-        - mime_type
-        - name
-        - size
-        - updated_at
-        - uploaded_by_user_id
-      filter: {}
-      limit: 0
   - role: user
     permission:
       columns:
