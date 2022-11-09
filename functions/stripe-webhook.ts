@@ -5,7 +5,7 @@ interface NhostRequest extends Request {
   rawBody: string
 }
 
-const endpointSecret = 'whsec_3aa2b8ef2a1261fecdc9c69a0b4ffba2427b0c4a8f05e6785ae6a9ff6ad12836'
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET as string
 
 const handler = (req: NhostRequest, res: Response) => {
   const sig = req.headers['stripe-signature'] as string
