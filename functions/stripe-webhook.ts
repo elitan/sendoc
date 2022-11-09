@@ -10,6 +10,9 @@ const endpointSecret = 'whsec_3aa2b8ef2a1261fecdc9c69a0b4ffba2427b0c4a8f05e6785a
 const handler = (req: NhostRequest, res: Response) => {
   const sig = req.headers['stripe-signature'] as string
 
+  console.log('sig:')
+  console.log(sig)
+
   let event
 
   console.log('raw body')
